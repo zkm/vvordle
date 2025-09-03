@@ -5,9 +5,12 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-  "test": "vitest --config vitest.config.mts",
-  "test:run": "vitest run --reporter=verbose --config vitest.config.mts",
+    "test": "vitest --config vitest.config.mts",
+    "test:run": "vitest run --reporter=verbose --config vitest.config.mts",
     "deploy": "sh deploy.sh"
+  },
+  "resolutions": {
+    "esbuild": ">=0.25.0"
   },
   "dependencies": {
     "vue": "^3.2.25"
