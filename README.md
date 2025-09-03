@@ -94,10 +94,3 @@ yarn build
 ```
 
 This produces a static build suitable for hosting. The current Vite setup emits to `docs/`.
-
-## Ideas for extension
-
-- Persist game state and statistics (localStorage).
-- Add share/copy button for the results grid.
-- Accessibility: focus management and ARIA live regions for status messages.
-- i18n: swap out `allWords`/`answers` for another language, adjust `base` if the repo name changes.
