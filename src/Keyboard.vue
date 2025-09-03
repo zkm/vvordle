@@ -49,6 +49,11 @@ const rows = [
 #keyboard {
   margin: 30px 8px 0;
   user-select: none;
+  padding: 12px;
+  border: 1px solid var(--green-200);
+  border-radius: 10px;
+  background: var(--green-50);
+  box-shadow: 0 1px 2px var(--tile-shadow);
 }
 .row {
   display: flex;
@@ -92,4 +97,9 @@ button:last-of-type {
 button.big {
   flex: 1.5;
 }
+
+/* State borders for additional visual cues */
+button.correct { box-shadow: inset 0 0 0 2px var(--state-correct-border); }
+button.present { box-shadow: inset 0 0 0 2px var(--state-present-border); }
+button.absent { box-shadow: inset 0 0 0 2px var(--state-absent-border); }
 </style>

@@ -19,6 +19,16 @@
   --key-bg: var(--green-100);
   --key-bg-hover: var(--green-200);
   --key-text: #0a2e14;
+
+  /* Semantic state colors */
+  --state-correct: var(--green-600);
+  --state-present: #f59e0b; /* amber-500/600 for Wordle-like yellow */
+  --state-absent: #4b5563;  /* gray-600 */
+
+  /* State border colors for additional differentiation */
+  --state-correct-border: var(--green-700);
+  --state-present-border: #b45309; /* amber-700 */
+  --state-absent-border: #374151;  /* gray-700 */
 }
 
 body {
@@ -54,13 +64,18 @@ h1 {
 }
 
 .correct {
-  background-color: var(--green-600) !important;
+  background-color: var(--state-correct) !important;
 }
 
 .present {
-  background-color: var(--green-500) !important;
+  background-color: var(--state-present) !important;
 }
 
 .absent {
-  background-color: var(--green-800) !important;
+  background-color: var(--state-absent) !important;
 }
+
+/* Add state borders to the flipped tile face for extra distinction */
+.tile .back.correct { border: 2px solid var(--state-correct-border); }
+.tile .back.present { border: 2px solid var(--state-present-border); }
+.tile .back.absent { border: 2px solid var(--state-absent-border); }
