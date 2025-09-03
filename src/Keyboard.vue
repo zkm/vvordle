@@ -17,11 +17,12 @@ const rows = [
 </script>
 
 <template>
-  <div id="keyboard">
+  <div id="keyboard" role="group" aria-label="On-screen keyboard">
     <div class="row" v-for="(row, i) in rows">
       <div class="spacer" v-if="i === 1"></div>
       <button
         v-for="key in row"
+        :aria-label="key === 'Backspace' ? 'Backspace' : key === 'Enter' ? 'Enter' : key.toUpperCase()"
         :class="[key.length > 1 && 'big', letterStates[key]]"
         @click="$emit('key', key)"
       >
@@ -68,8 +69,8 @@ button {
   border-radius: 4px;
   cursor: pointer;
   user-select: none;
-  background-color: #d3d6da;
-  color: #1a1a1b;
+  background-color: var(--key-bg);
+  color: var(--key-text);
   flex: 1;
   display: flex;
   justify-content: center;
@@ -77,6 +78,13 @@ button {
   text-transform: uppercase;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0.3);
   transition: all 0.2s 1.5s;
+}
+button:focus-visible {
+  outline: 3px solid var(--green-500);
+  outline-offset: 2px;
+}
+button:hover {
+  background-color: var(--key-bg-hover);
 }
 button:last-of-type {
   margin: 0;

@@ -2,14 +2,21 @@ import { createApp } from 'vue'
 import Game from './Game.vue'
 import './game.css'
 
-// resize for scaling the board size
-window.addEventListener('resize', onResize)
-// set size on startup
-onResize()
-
 function onResize() {
   // get actual vh on mobile
   document.body.style.setProperty('--vh', window.innerHeight + 'px')
 }
 
-createApp(Game).mount('#app')
+function init() {
+  onResize()
+  // listen for subsequent resizes after initial styles are loaded
+  window.addEventListener('resize', onResize)
+  createApp(Game).mount('#app')
+}
+
+// Avoid forcing layout before stylesheets are loaded to prevent FOUC
+if (document.readyState === 'complete') {
+  init()
+} else {
+  window.addEventListener('load', init, { once: true })
+}

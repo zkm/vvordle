@@ -173,7 +173,7 @@ function genResultGrid() {
 
 <template>
   <Transition>
-    <div class="message" v-if="message">
+    <div class="message" v-if="message" role="alert" aria-live="assertive">
       {{ message }}
       <pre v-if="grid">{{ grid }}</pre>
     </div>
@@ -181,9 +181,11 @@ function genResultGrid() {
   <header>
     <h1>VVORDLE</h1>
   </header>
-  <div id="board">
+  <div id="board" role="grid" aria-label="Game board" aria-live="polite">
     <div
       v-for="(row, index) in board"
+      role="row"
+      :aria-label="`Row ${index + 1}`"
       :class="[
         'row',
         shakeRowIndex === index && 'shake',
@@ -192,6 +194,8 @@ function genResultGrid() {
     >
       <div
         v-for="(tile, index) in row"
+        role="gridcell"
+        :aria-label="`${tile.letter ? tile.letter.toUpperCase() : 'Blank'} ${tile.state || 'initial'}`"
         :class="['tile', tile.letter && 'filled', tile.state && 'revealed']"
       >
         <div class="front" :style="{ transitionDelay: `${index * 300}ms` }">
@@ -274,10 +278,11 @@ function genResultGrid() {
   -webkit-backface-visibility: hidden;
 }
 .tile .front {
-  border: 2px solid #d3d6da;
+  border: 2px solid var(--tile-border);
+  box-shadow: 0 1px 2px var(--tile-shadow);
 }
 .tile.filled .front {
-  border-color: #999;
+  border-color: var(--tile-border-filled);
 }
 .tile .back {
   transform: rotateX(180deg);
@@ -363,6 +368,19 @@ function genResultGrid() {
 @media (max-height: 680px) {
   .tile {
     font-size: 3vh;
+  }
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .tile .front,
+  .tile .back {
+    transition: none !important;
+  }
+  .tile.filled,
+  .shake,
+  .jump .tile .back {
+    animation: none !important;
   }
 }
 </style>
