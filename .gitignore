@@ -4,6 +4,11 @@ dist
 dist-ssr
 docs/
 *.local
+.vscode/
+.idea/
+*.log
+*.tsbuildinfo
+coverage/
 
 # Prefer Yarn; ignore other lockfiles
 package-lock.json
