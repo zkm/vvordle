@@ -15,10 +15,10 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^6.0.7",
-    "@vue/test-utils": "^2.4.10",
+    "@vue/test-utils": "^2.4.11",
     "jsdom": "^29.1.1",
-    "vite": "^8.0.15",
-    "vitest": "^4.1.7"
+    "vite": "^8.0.16",
+    "vitest": "^4.1.8"
   },
   "packageManager": "yarn@4.14.1"
 }
