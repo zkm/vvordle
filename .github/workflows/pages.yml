@@ -3,6 +3,8 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [ master ]
+  pull_request:
+    branches: [ master ]
   workflow_dispatch:
 
 permissions:
@@ -11,7 +13,8 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
+  # PRs only build and test; their own group keeps them from cancelling a deploy
+  group: ${{ github.event_name == 'pull_request' && format('pages-pr-{0}', github.ref) || 'pages' }}
   cancel-in-progress: true
 
 jobs:
@@ -24,7 +27,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "24"
           cache: yarn
 
       - name: Install dependencies
@@ -35,6 +38,9 @@ jobs:
             npm ci || npm install
           fi
 
+      - name: Test
+        run: yarn test:run
+
       - name: Build
         run: |
           if command -v yarn >/dev/null 2>&1; then
@@ -44,12 +50,14 @@ jobs:
           fi
 
       - name: Upload artifact (docs)
+        if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./docs
 
   deploy:
     needs: build
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
