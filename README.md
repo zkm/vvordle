@@ -1,5 +1,15 @@
 # VVordle – Code Overview
 
+[![Deploy to GitHub Pages](https://github.com/zkm/vvordle/actions/workflows/pages.yml/badge.svg)](https://github.com/zkm/vvordle/actions/workflows/pages.yml)
+[![play](https://img.shields.io/website?url=https%3A%2F%2Fzkm.github.io%2Fvvordle%2F&label=play)](https://zkm.github.io/vvordle/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
+
+![Vue 3](https://img.shields.io/badge/Vue-3-4FC08D?logo=vuedotjs&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=white)
+![Vitest](https://img.shields.io/badge/Vitest-6E9F18?logo=vitest&logoColor=white)
+![Yarn 4](https://img.shields.io/badge/Yarn-4-2C8EBB?logo=yarn&logoColor=white)
+
 VVordle is a small, readable Vue 3 + Vite implementation of Wordle. This document focuses on how the code is structured and how the game logic works.
 
 This repository is open sourced for learning purposes only — the original creator(s) of Wordle own all applicable rights to the game itself.
